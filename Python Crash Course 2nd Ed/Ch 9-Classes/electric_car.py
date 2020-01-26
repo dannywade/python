@@ -1,3 +1,5 @@
+"""Import multiple classes from one module"""
+
 class Car:
     """A simple class to represent a class"""
 
@@ -33,11 +35,12 @@ class Car:
     def increment_odometer(self, miles):
         self.odometer_reading += miles
 
-
+"""
 my_new_car = Car('audi', 'a4', 2020)
 
 print(my_new_car.get_descriptive_name())
 my_new_car.read_odometer()
+"""
 
 class ElectricCar(Car):
     """Represent aspects of a car, specific to electric vehicles"""
@@ -46,6 +49,31 @@ class ElectricCar(Car):
         """Initialize attributes of parent class"""
         super().__init__(make, model, year)
 
+        self.battery = Battery()
+ 
 
+class Battery:
+    def __init__(self, battery_size=75):
+        """Initialize the battery's attributes"""
+        self.battery_size = battery_size
+
+    def describe_battery(self):
+        print(f"This car has a {self.battery_size}-kWh battery.")
+
+    def get_range(self):
+        if self.battery_size == 75:
+            range = 260
+        elif self.battery_size == 100:
+            range = 315
+
+        print(f"This car has a range of {range} miles on a full charge.")
+
+
+
+"""
 my_tesla = ElectricCar('tesla', 'model s', 2020)
 print(my_tesla.get_descriptive_name())
+
+my_tesla.battery.describe_battery()
+my_tesla.battery.get_range()
+"""
